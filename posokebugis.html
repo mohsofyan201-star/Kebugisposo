@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jalan Sehat Bersama KEBUGIS Poso 2026</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Montserrat untuk judul besar (poster), Inter untuk teks standar -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;0,800;0,900;1,700;1,800;1,900&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome untuk ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            red: '#d61c22',
+                            darkRed: '#8B0000',
+                            green: '#008751',
+                            neonGreen: '#00ff6a',
+                            gold: '#FFD700',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Setup Dasar & Latar Belakang */
+        body {
+            background-color: #050505;
+            color: white;
+            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Latar belakang halftone titik-titik (Poster Vibe) */
+        .halftone {
+            position: fixed;
+            inset: 0;
+            background-image: radial-gradient(#FFD700 0.5px, transparent 0.5px);
+            background-size: 15px 15px;
+            opacity: 0.15;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Latar belakang gradien glow dari bawah */
+        .glow-bg {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at bottom center, rgba(214, 28, 34, 0.15) 0%, rgba(0, 135, 81, 0.1) 40%, transparent 80%);
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        /* Efek Teks JALAN SEHAT (Putih 3D) */
+        .text-3d-white {
+            font-family: 'Montserrat', sans-serif;
+            font-style: italic;
+            font-weight: 900;
+            color: #FFFFFF;
+            text-shadow: 
+                3px 3px 0 #000,
+                5px 5px 0 #000,
+                8px 8px 10px rgba(0,0,0,0.8);
+            letter-spacing: -0.02em;
+        }
+
+        /* Efek Teks KEBUGIS (Merah Menyala dengan Stroke Putih) */
+        .text-3d-red {
+            font-family: 'Montserrat', sans-serif;
+            font-style: italic;
+            font-weight: 900;
+            background: linear-gradient(180deg, #ff4d4d 0%, #aa0000 60%, #4d0000 100%);
+            -webkit-background-clip: text;
+            color: transparent;
+            -webkit-text-stroke: 2px white;
+            filter: drop-shadow(4px 6px 0px #000000);
+            line-height: 0.9;
+        }
+
+        /* Kotak Countdown Hitung Mundur */
+        .cd-card {
+            background: linear-gradient(180deg, #1a1a1a 0%, #050505 100%);
+            border: 2px solid rgba(0, 255, 106, 0.6);
+            border-top: 3px solid #00ff6a;
+            border-radius: 12px;
+            box-shadow: inset 0px 10px 20px -10px rgba(0, 255, 106, 0.3), 0px 8px 15px rgba(0,0,0,0.8);
+            position: relative;
+        }
+
+        /* Label Pil Merah di bawah kotak hitung mundur */
+        .cd-label {
+            background: linear-gradient(to bottom, #d61c22, #8B0000);
+            border: 2px solid #000;
+            box-shadow: 0px 4px 6px rgba(0,0,0,0.5);
+        }
+
+        /* Pita Bergerigi / Diagonal Merah untuk slogan */
+        .ribbon-red {
+            background: linear-gradient(90deg, #8B0000 0%, #d61c22 50%, #8B0000 100%);
+            clip-path: polygon(2% 0, 98% 0, 100% 50%, 98% 100%, 2% 100%, 0% 50%);
+            border-top: 1px solid #FFD700;
+            border-bottom: 1px solid #FFD700;
+        }
+
+        /* Confetti */
+        .confetti {
+            position: absolute;
+            z-index: 0;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Ornamen Garis Hijau Neon */
+        .green-line {
+            height: 4px;
+            background-color: #00ff6a;
+            box-shadow: 0 0 8px #00ff6a;
+        }
+    </style>
+</head>
+<body class="relative min-h-screen flex flex-col items-center pb-20">
+
+    <!-- Background overlay simulasi gambar pohon/langit (samar) -->
+    <div class="fixed inset-0 z-[-3] bg-[url('https://images.unsplash.com/photo-1542361345-89e58247f2d5?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-top opacity-20" style="mask-image: linear-gradient(to bottom, black 10%, transparent 60%); -webkit-mask-image: linear-gradient(to bottom, black 10%, transparent 60%);"></div>
+    <div class="glow-bg"></div>
+    <div class="halftone"></div>
+    <div id="confetti-container" class="fixed inset-0 overflow-hidden pointer-events-none z-0"></div>
+
+    <!-- MAIN CONTAINER -->
+    <main class="w-full max-w-4xl mx-auto flex flex-col items-center px-4 relative z-10 pt-8 sm:pt-12">
+        
+        <!-- Logo KEBUGIS -->
+        <div class="mb-4 transform hover:scale-105 transition duration-300">
+            <!-- Logo menggunakan file gambar yang diberikan -->
+            <img src="1000222909-removebg-preview.jpg" alt="Logo Kebugis Poso" class="w-32 h-32 md:w-40 md:h-40 object-contain rounded-full shadow-[0_0_20px_rgba(255,0,0,0.4)]">
+        </div>
+
+        <!-- JALAN SEHAT -->
+        <h2 class="text-3d-white text-5xl sm:text-7xl md:text-[5.5rem] leading-none text-center -mb-2 z-20">
+            JALAN SEHAT
+        </h2>
+        
+        <!-- BERSAMA (Diapit Garis Hijau) -->
+        <div class="flex items-center justify-center w-full max-w-lg mb-2 z-10">
+            <div class="green-line flex-grow"></div>
+            <div class="bg-brand-green px-6 py-1 mx-3 transform -skew-x-12 border border-brand-neonGreen">
+                <span class="text-white font-black italic text-xl sm:text-2xl tracking-widest uppercase block transform skew-x-12">BERSAMA</span>
+            </div>
+            <div class="green-line flex-grow"></div>
+        </div>
+
+        <!-- KEBUGIS -->
+        <h1 class="text-3d-red text-[5rem] sm:text-[8rem] md:text-[9rem] tracking-tighter text-center z-20 w-full mb-4">
+            KEBUGIS
+        </h1>
+
+        <!-- KELUARGA BUGIS SIDENRENG RAPPANG (Pill Hijau Gelap) -->
+        <div class="bg-[#00331f] border-2 border-brand-green rounded-full px-6 py-2 shadow-[0_0_15px_rgba(0,135,81,0.5)] z-20 mb-6 max-w-[95%] text-center">
+            <p class="text-white text-xs sm:text-sm md:text-base font-bold tracking-[0.15em] uppercase font-display">
+                Keluarga Bugis Sidenreng Rappang
+            </p>
+        </div>
+
+        <!-- Pita Slogan Merah -->
+        <div class="w-full max-w-2xl ribbon-red py-3 px-8 text-center z-20 shadow-2xl mb-8 transform -rotate-1 hover:rotate-0 transition-transform duration-300">
+            <p class="text-white text-sm sm:text-lg md:text-xl font-black italic tracking-wide uppercase drop-shadow-md flex items-center justify-center gap-3">
+                <i class="fa-solid fa-person-walking text-brand-gold"></i>
+                Bersama Jalan Kaki Pulang Bawa Rejeki
+                <i class="fa-solid fa-person-walking text-brand-gold"></i>
+            </p>
+        </div>
+
+        <!-- Tanggal Acara -->
+        <div class="inline-flex items-center gap-3 px-6 py-3 rounded-xl bg-black border-2 border-brand-gold shadow-[0_0_20px_rgba(255,215,0,0.2)] mb-10 z-20">
+            <i class="fa-regular fa-calendar-days text-brand-gold text-2xl"></i>
+            <span class="text-white font-display font-black text-lg md:text-2xl tracking-widest uppercase mt-1">Minggu, 9 Agustus 2026</span>
+        </div>
+
+        <!-- SEKSI HITUNG MUNDUR -->
+        <div class="w-full max-w-3xl flex flex-col items-center mb-10 z-20">
+            <!-- Judul Menuju Hari Acara -->
+            <div class="flex items-center justify-center w-full mb-6">
+                <div class="h-[2px] bg-brand-red flex-grow"></div>
+                <h3 class="text-white font-display font-bold text-sm sm:text-base tracking-[0.3em] uppercase mx-4 text-center">
+                    Menuju Hari Acara
+                </h3>
+                <div class="h-[2px] bg-brand-red flex-grow"></div>
+            </div>
+
+            <!-- Grid Kotak Countdown -->
+            <div id="countdown-grid" class="grid grid-cols-4 gap-3 sm:gap-6 w-full px-2">
+                
+                <!-- HARI -->
+                <div class="cd-card flex flex-col items-center justify-center pt-4 pb-6 sm:pt-6 sm:pb-8">
+                    <span id="days" class="text-4xl sm:text-6xl md:text-7xl font-black text-white font-display tracking-tighter">000</span>
+                    <div class="cd-label absolute -bottom-4 px-4 sm:px-8 py-1 rounded-full text-[10px] sm:text-sm font-bold text-white uppercase tracking-wider">Hari</div>
+                </div>
+
+                <!-- JAM -->
+                <div class="cd-card flex flex-col items-center justify-center pt-4 pb-6 sm:pt-6 sm:pb-8">
+                    <span id="hours" class="text-4xl sm:text-6xl md:text-7xl font-black text-white font-display tracking-tighter">00</span>
+                    <div class="cd-label absolute -bottom-4 px-4 sm:px-8 py-1 rounded-full text-[10px] sm:text-sm font-bold text-white uppercase tracking-wider">Jam</div>
+                </div>
+
+                <!-- MENIT -->
+                <div class="cd-card flex flex-col items-center justify-center pt-4 pb-6 sm:pt-6 sm:pb-8">
+                    <span id="minutes" class="text-4xl sm:text-6xl md:text-7xl font-black text-white font-display tracking-tighter">00</span>
+                    <div class="cd-label absolute -bottom-4 px-4 sm:px-8 py-1 rounded-full text-[10px] sm:text-sm font-bold text-white uppercase tracking-wider">Menit</div>
+                </div>
+
+                <!-- DETIK -->
+                <div class="cd-card flex flex-col items-center justify-center pt-4 pb-6 sm:pt-6 sm:pb-8">
+                    <span id="seconds" class="text-4xl sm:text-6xl md:text-7xl font-black text-white font-display tracking-tighter">00</span>
+                    <div class="cd-label absolute -bottom-4 px-4 sm:px-8 py-1 rounded-full text-[10px] sm:text-sm font-bold text-white uppercase tracking-wider">Detik</div>
+                </div>
+
+            </div>
+
+            <!-- Pesan Selesai -->
+            <div id="event-started" class="hidden w-full text-center bg-brand-green/20 border-2 border-brand-neonGreen p-8 rounded-2xl mt-4 backdrop-blur-sm">
+                <h2 class="text-3xl font-display font-black text-brand-neonGreen italic mb-2">ACARA DIMULAI! 🎉</h2>
+                <p class="text-white font-bold">Mari merapat ke lokasi sekarang juga!</p>
+            </div>
+        </div>
+
+        <!-- FITUR AI: GENERATOR PANTUN PENYEMANGAT -->
+        <div class="w-full max-w-3xl bg-black/60 backdrop-blur-md border border-brand-gold/50 rounded-2xl p-6 z-20 mb-10 shadow-2xl relative overflow-hidden">
+            <!-- Efek dekoratif AI -->
+            <div class="absolute -top-10 -right-10 w-32 h-32 bg-brand-gold/20 rounded-full blur-3xl"></div>
+            <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-brand-red/20 rounded-full blur-3xl"></div>
+            
+            <div class="relative z-10 flex flex-col items-center">
+                <h3 class="text-brand-gold font-display font-black text-lg md:text-xl italic uppercase tracking-wider mb-2 flex items-center gap-2">
+                    <i class="fa-solid fa-robot"></i> Pantun Penyemangat dari TIM KEBUGIS POSO
+                </h3>
+                <p class="text-gray-300 text-sm text-center mb-6 max-w-md">
+                    Butuh semangat? TIM meracik pantun spesial untuk mengajakmu dan teman-teman ikut Jalan Sehat Kebugis Poso!
+                </p>
+
+                <!-- Tombol Generate AI -->
+                <button id="generate-pantun-btn" class="group relative px-6 py-3 font-bold text-white rounded-full bg-gradient-to-r from-brand-red to-brand-darkRed hover:from-brand-darkRed hover:to-brand-red transition-all duration-300 shadow-[0_0_15px_rgba(214,28,34,0.5)] hover:shadow-[0_0_25px_rgba(255,215,0,0.6)] transform hover:-translate-y-1 overflow-hidden">
+                    <span class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-black"></span>
+                    <span class="relative flex items-center gap-2">
+                        <i class="fa-solid fa-wand-magic-sparkles group-hover:animate-pulse text-brand-gold"></i>
+                        Buatkan Pantun!
+                    </span>
+                </button>
+
+                <!-- Area Hasil AI -->
+                <div id="ai-result-container" class="w-full mt-6 hidden">
+                    <div class="bg-gray-900/80 border border-gray-700 rounded-xl p-5 relative">
+                        <!-- Loading Indicator -->
+                        <div id="ai-loading" class="flex flex-col items-center justify-center py-4 hidden">
+                            <div class="w-8 h-8 border-4 border-brand-green border-t-brand-gold rounded-full animate-spin mb-3"></div>
+                            <p class="text-gray-400 text-sm animate-pulse">TIM sedang berpikir merangkai kata...</p>
+                        </div>
+                        
+                        <!-- Teks Pantun -->
+                        <div id="ai-pantun-text" class="text-center font-display text-white text-lg md:text-xl font-semibold italic leading-relaxed">
+                            <!-- Hasil pantun akan muncul di sini -->
+                        </div>
+                        
+                        <!-- Tombol Copy -->
+                        <button id="copy-pantun-btn" class="absolute top-2 right-2 text-gray-500 hover:text-white transition-colors hidden" title="Salin Pantun">
+                            <i class="fa-regular fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- INFO KARTU (Putih) -->
+        <div class="w-full bg-white rounded-2xl p-4 sm:p-6 shadow-[0_10px_30px_rgba(0,0,0,0.5)] z-20 mt-4 mb-16 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 md:gap-0 border border-gray-200">
+            
+            <!-- Lokasi -->
+            <div class="flex items-center gap-4 flex-1 w-full md:pr-4 md:border-r border-gray-300">
+                <div class="w-12 h-12 flex-shrink-0 bg-gray-100 rounded-full flex items-center justify-center text-brand-red">
+                    <i class="fa-solid fa-location-dot text-2xl"></i>
+                </div>
+                <div>
+                    <p class="text-brand-green font-extrabold text-xs tracking-wider uppercase mb-0.5">Lokasi</p>
+                    <p class="text-black font-black text-base sm:text-lg leading-tight">RTH KOTA POSO</p>
+                </div>
+            </div>
+
+            <!-- Bersama -->
+            <div class="flex items-center gap-4 flex-1 w-full md:px-6 md:border-r border-gray-300">
+                <div class="w-12 h-12 flex-shrink-0 bg-gray-100 rounded-full flex items-center justify-center text-brand-green">
+                    <i class="fa-solid fa-users text-xl"></i>
+                </div>
+                <div>
+                    <p class="text-brand-green font-extrabold text-xs tracking-wider uppercase mb-0.5">Bersama</p>
+                    <p class="text-black font-black text-sm sm:text-base leading-tight">KELUARGA BUGIS<br>SIDRAP KABUPATEN POSO</p>
+                </div>
+            </div>
+
+            <!-- Tema -->
+            <div class="flex items-center gap-4 flex-1 w-full md:pl-6">
+                <div class="w-12 h-12 flex-shrink-0 bg-gray-100 rounded-full flex items-center justify-center text-brand-red">
+                    <i class="fa-solid fa-heart-pulse text-xl"></i>
+                </div>
+                <div>
+                    <p class="text-brand-green font-extrabold text-xs tracking-wider uppercase mb-0.5">Sehat Bersama</p>
+                    <p class="text-brand-red font-black text-base leading-tight">KEBUGIS</p>
+                    <p class="text-gray-600 font-bold text-xs">Bersatu, Sehat, Bahagia</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- BAGIAN BAWAH (Siluet & Footer Banners) -->
+    <div class="w-full fixed bottom-0 left-0 right-0 z-30 pointer-events-none flex flex-col items-center">
+        
+        <!-- Banner Terbuka Untuk Umum -->
+        <div class="bg-[#d61c22] border-y-2 border-brand-gold px-12 py-1.5 shadow-lg transform translate-y-3 pointer-events-auto">
+            <p class="text-white font-display font-black text-sm sm:text-lg italic tracking-[0.2em] uppercase flex items-center gap-4">
+                <i class="fa-solid fa-sparkles text-brand-gold text-xs"></i>
+                TERBUKA UNTUK UMUM
+                <i class="fa-solid fa-sparkles text-brand-gold text-xs"></i>
+            </p>
+        </div>
+
+        <!-- Footer Hitam Bawah -->
+        <div class="w-full bg-black border-t-2 border-brand-gold flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 py-3 px-4 pointer-events-auto shadow-[0_-5px_20px_rgba(0,0,0,0.8)]">
+            <button onclick="alert('Fitur Kalender akan ditambahkan!')" class="text-white hover:text-brand-gold transition flex items-center gap-2 font-bold text-xs sm:text-sm">
+                <i class="fa-regular fa-calendar-plus"></i> SIMPAN KE KALENDER
+            </button>
+            <div class="hidden sm:block w-[1px] h-4 bg-gray-600"></div>
+            <p class="text-brand-gold font-black italic tracking-wider text-xs sm:text-sm uppercase">
+                SEHAT HARI INI, KUAT ESOK HARI
+            </p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Target: Minggu, 9 Agustus 2026, Pukul 06:00 WITA
+            const targetDate = new Date(2026, 7, 9, 6, 0, 0).getTime();
+            
+            const els = {
+                days: document.getElementById("days"),
+                hours: document.getElementById("hours"),
+                minutes: document.getElementById("minutes"),
+                seconds: document.getElementById("seconds"),
+                grid: document.getElementById("countdown-grid"),
+                msg: document.getElementById("event-started")
+            };
+
+            const pad = (n) => String(n).padStart(2, '0');
+
+            const updateTimer = () => {
+                const now = new Date().getTime();
+                const diff = targetDate - now;
+
+                if (diff <= 0) {
+                    clearInterval(timerId);
+                    els.days.textContent = "000";
+                    els.hours.textContent = "00";
+                    els.minutes.textContent = "00";
+                    els.seconds.textContent = "00";
+                    
+                    els.grid.classList.add("hidden");
+                    els.msg.classList.remove("hidden");
+                    return;
+                }
+
+                const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+                // Pad 3 digits for days if it's over 99, otherwise 2 or whatever looks best (the image has "377")
+                els.days.textContent = String(d).padStart(3, '0');
+                els.hours.textContent = pad(h);
+                els.minutes.textContent = pad(m);
+                els.seconds.textContent = pad(s);
+            };
+
+            updateTimer();
+            const timerId = setInterval(updateTimer, 1000);
+
+            // Confetti Generation
+            const generateConfetti = () => {
+                const container = document.getElementById("confetti-container");
+                const colors = ['#d61c22', '#008751', '#FFD700', '#ffffff'];
+                
+                for (let i = 0; i < 50; i++) {
+                    const c = document.createElement("div");
+                    c.className = "confetti";
+                    
+                    const size = Math.random() * 8 + 4;
+                    c.style.width = `${size}px`;
+                    c.style.height = `${size}px`;
+                    c.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    
+                    // Random start position
+                    c.style.left = `${Math.random() * 100}vw`;
+                    
+                    // Random physics
+                    const duration = Math.random() * 5 + 5;
+                    const delay = Math.random() * 10;
+                    c.style.animationDuration = `${duration}s`;
+                    c.style.animationDelay = `-${delay}s`; // start midway
+                    
+                    // Variety of shapes
+                    if (Math.random() > 0.5) c.style.borderRadius = "50%";
+                    
+                    container.appendChild(c);
+                }
+            };
+            
+            generateConfetti();
+            
+            // ==========================================
+            // LOGIKA GEMINI API UNTUK GENERATOR PANTUN
+            // ==========================================
+            const generateBtn = document.getElementById('generate-pantun-btn');
+            const resultContainer = document.getElementById('ai-result-container');
+            const loadingIndicator = document.getElementById('ai-loading');
+            const pantunTextEl = document.getElementById('ai-pantun-text');
+            const copyBtn = document.getElementById('copy-pantun-btn');
+
+            // Kunci API (Biarkan kosong agar sistem Immersive Canvas menyediakannya secara otomatis)
+            const apiKey = ""; 
+
+            generateBtn.addEventListener('click', async () => {
+                // Persiapan UI: Tampilkan loading, sembunyikan hasil sebelumnya
+                resultContainer.classList.remove('hidden');
+                loadingIndicator.classList.remove('hidden');
+                pantunTextEl.innerHTML = '';
+                pantunTextEl.classList.add('hidden');
+                copyBtn.classList.add('hidden');
+                generateBtn.disabled = true;
+                generateBtn.classList.add('opacity-50', 'cursor-not-allowed');
+
+                const systemPrompt = "Anda adalah seorang pujangga ahli pembuat pantun. Tugas Anda adalah membuat 1 bait pantun (4 baris dengan rima a-b-a-b atau a-a-a-a). Pantun ini ditujukan untuk mengajak masyarakat (khususnya Keluarga Bugis Sidrap) di Kabupaten Poso untuk mengikuti acara 'Jalan Sehat Bersama Kebugis Poso' pada tanggal 9 Agustus 2026. Isinya harus semangat, berbau kesehatan, kebersamaan, dan sedikit unsur budaya Bugis/Poso jika memungkinkan. Hanya kembalikan teks pantunnya saja, gunakan tag <br> untuk setiap baris.";
+                const userQuery = "Buatkan satu bait pantun penyemangat untuk acara Jalan Sehat Kebugis Poso.";
+                
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+
+                const payload = {
+                    contents: [{ parts: [{ text: userQuery }] }],
+                    systemInstruction: {
+                        parts: [{ text: systemPrompt }]
+                    },
+                };
+
+                try {
+                    // Implementasi Exponential Backoff sederhana untuk keandalan
+                    let retries = 3;
+                    let delay = 1000;
+                    let response;
+                    
+                    while (retries > 0) {
+                        response = await fetch(apiUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+
+                        if (response.ok) break;
+                        
+                        if (response.status === 429) {
+                            retries--;
+                            await new Promise(resolve => setTimeout(resolve, delay));
+                            delay *= 2;
+                        } else {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                    }
+
+                    if (!response.ok) {
+                        throw new Error("Gagal terhubung ke API Gemini setelah beberapa percobaan.");
+                    }
+
+                    const result = await response.json();
+                    const candidate = result.candidates?.[0];
+
+                    if (candidate && candidate.content?.parts?.[0]?.text) {
+                        // Tampilkan hasil
+                        loadingIndicator.classList.add('hidden');
+                        pantunTextEl.innerHTML = candidate.content.parts[0].text;
+                        pantunTextEl.classList.remove('hidden');
+                        copyBtn.classList.remove('hidden');
+                    } else {
+                        throw new Error("Format respons dari AI tidak sesuai.");
+                    }
+
+                } catch (error) {
+                    console.error("Error generating AI content:", error);
+                    loadingIndicator.classList.add('hidden');
+                    pantunTextEl.innerHTML = `<span class="text-brand-red text-sm">Maaf, AI sedang kelelahan. Silakan coba lagi nanti.</span>`;
+                    pantunTextEl.classList.remove('hidden');
+                } finally {
+                    // Kembalikan kondisi tombol
+                    generateBtn.disabled = false;
+                    generateBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                }
+            });
+
+            // Fitur Salin Teks
+            copyBtn.addEventListener('click', () => {
+                const textToCopy = pantunTextEl.innerText; // Mengambil teks tanpa tag <br>
+                
+                // Membuat elemen textarea sementara (cara yang lebih aman untuk iFrame)
+                const tempTextArea = document.createElement("textarea");
+                tempTextArea.value = textToCopy;
+                document.body.appendChild(tempTextArea);
+                tempTextArea.select();
+                
+                try {
+                    document.execCommand('copy');
+                    
+                    // Feedback visual ringkas
+                    const originalIcon = copyBtn.innerHTML;
+                    copyBtn.innerHTML = '<i class="fa-solid fa-check text-brand-green"></i>';
+                    setTimeout(() => {
+                        copyBtn.innerHTML = originalIcon;
+                    }, 2000);
+                } catch (err) {
+                    console.error('Gagal menyalin teks', err);
+                }
+                
+                document.body.removeChild(tempTextArea);
+            });
+        });
+    </script>
+</body>
+</html>
