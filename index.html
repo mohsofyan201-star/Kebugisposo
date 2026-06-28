@@ -118,6 +118,43 @@
         }
     </style>
 </head>
+
+<!-- Pemutar Musik YouTube (disembunyikan) -->
+<div id="youtube-player" style="display:none;"></div>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<script>
+let player;
+
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('youtube-player', {
+        height: '0',
+        width: '0',
+        videoId: 'QGfP9BEdqNo',
+        playerVars: {
+            autoplay: 1,
+            loop: 1,
+            playlist: 'QGfP9BEdqNo',
+            controls: 0
+        },
+        events: {
+            onReady: function (event) {
+                event.target.setVolume(50); // volume 50%
+                event.target.playVideo();
+            }
+        }
+    });
+}
+
+// Membantu autoplay di browser yang memblokir audio otomatis
+document.addEventListener('click', function () {
+    if (player && player.playVideo) {
+        player.playVideo();
+    }
+}, { once: true });
+</script>
+    
 <body class="relative min-h-screen flex flex-col items-center pb-20">
 
     <!-- Latar Belakang Baru: Nuansa Taman/Hutan (Mirip ChatGPT Image 27 Jun 2026, 15.08.23_2.jpg) -->
