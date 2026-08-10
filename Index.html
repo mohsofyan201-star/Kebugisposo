@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terima Kasih - KEBUGIS Poso 2026</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;0,800;0,900;1,700;1,800;1,900&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Confetti Library untuk efek perayaan otomatis -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            red: '#d61c22',
+                            darkRed: '#8B0000',
+                            green: '#008751',
+                            neonGreen: '#00ff6a',
+                            gold: '#FFD700',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #050505;
+            color: white;
+            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .text-3d-red {
+            font-family: 'Montserrat', sans-serif;
+            font-style: italic;
+            font-weight: 900;
+            background: linear-gradient(180deg, #ff4d4d 0%, #aa0000 60%, #4d0000 100%);
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 
+                -2px -2px 0 #fff,  
+                 2px -2px 0 #fff,
+                -2px  2px 0 #fff,
+                 2px  2px 0 #fff,
+                 0px  4px 0px #000,
+                 0px  6px 10px rgba(0,0,0,0.8);
+            line-height: 1.1;
+        }
+
+        .text-3d-white {
+            font-family: 'Montserrat', sans-serif;
+            font-style: italic;
+            font-weight: 900;
+            color: #FFFFFF;
+            text-shadow: 3px 3px 0 #000, 5px 5px 0 #000, 8px 8px 10px rgba(0,0,0,0.8);
+            letter-spacing: -0.02em;
+        }
+
+        /* Container Video dengan gaya glow */
+        .video-wrapper {
+            background: linear-gradient(180deg, #1a1a1a 0%, #050505 100%);
+            border: 3px solid rgba(0, 255, 106, 0.6);
+            border-top: 4px solid #00ff6a;
+            border-radius: 16px;
+            box-shadow: 0px 15px 30px rgba(0,0,0,0.9), inset 0 0 20px rgba(0,255,106,0.2);
+            padding: 8px;
+            position: relative;
+        }
+
+        .music-btn {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            z-index: 50;
+            background: #d61c22;
+            color: white;
+            padding: 15px;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.8);
+            transition: all 0.3s;
+            border: 2px solid #FFD700;
+        }
+        .music-btn:hover { transform: scale(1.1); background: #8B0000; }
+    </style>
+</head>
+<body class="relative min-h-screen flex flex-col items-center pb-20">
+
+    <!-- Background Alam (Tetap dipertahankan) -->
+    <div class="fixed inset-0 z-[-3] bg-[url('https://images.unsplash.com/photo-1501854140801-50d01698950b?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center opacity-30" style="mask-image: linear-gradient(to bottom, black 20%, transparent 80%); -webkit-mask-image: linear-gradient(to bottom, black 20%, transparent 80%);"></div>
+    
+    <div class="fixed inset-0 bg-gradient-to-t from-black via-transparent to-black z-[-2] pointer-events-none"></div>
+
+    <!-- Elemen Audio Musik -->
+    <audio id="bg-music" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Tombol Kontrol Musik -->
+    <button id="music-toggle" class="music-btn" onclick="toggleMusic()">
+        <i id="music-icon" class="fa-solid fa-music text-xl"></i>
+    </button>
+
+    <main class="w-full max-w-4xl mx-auto flex flex-col items-center px-4 relative z-10 pt-8 sm:pt-12">
+        
+        <!-- Logo -->
+        <div class="relative w-28 md:w-36 mb-6">
+            <div class="absolute inset-0 bg-white rounded-full blur-xl opacity-30"></div>
+            <img src="1000222909-removebg-preview.jpg" alt="Logo Kebugis" class="w-full h-auto drop-shadow-2xl relative z-10" onerror="this.onerror=null; this.outerHTML='<div class=\'w-24 h-24 bg-white/20 rounded-full flex items-center justify-center text-xs text-center\'>Logo Kebugis<br>(1000222909-removebg-preview.jpg)</div>';">
+        </div>
+
+        <!-- Judul Terima Kasih -->
+        <div class="text-center w-full relative mb-8">
+            <h2 class="text-xl sm:text-2xl font-display font-black text-white tracking-widest uppercase mb-1 drop-shadow-md">
+                ALHAMDULILLAH, ACARA SUKSES!
+            </h2>
+            <h1 class="text-5xl sm:text-7xl md:text-8xl text-3d-red uppercase relative z-10">
+                TERIMA KASIH
+            </h1>
+            <p class="mt-4 text-brand-neonGreen font-bold tracking-widest uppercase text-sm sm:text-lg bg-black/50 inline-block px-6 py-2 rounded-full border border-brand-green">
+                JALAN SEHAT BERSAMA KEBUGIS 2026
+            </p>
+        </div>
+
+        <!-- TEMPLATE VIDEO DOKUMENTASI -->
+        <div class="w-full max-w-3xl mb-8 relative z-20">
+            <div class="video-wrapper">
+                <!-- 
+                   CATATAN UNTUK MEMASUKKAN VIDEO:
+                   1. Siapkan video Anda (misal namanya: "video-acara.mp4")
+                   2. Taruh file video tersebut di folder yang sama dengan index.html ini
+                   3. Ubah src="video-acara.mp4" pada tag di bawah ini
+                -->
+                <video id="event-video" controls poster="https://images.unsplash.com/photo-1526676537331-7bcaf84a51e9?q=80&w=1000&auto=format&fit=crop" class="w-full rounded-xl shadow-inner bg-black aspect-video object-cover">
+                    <!-- Ganti src di bawah ini dengan nama file video Anda -->
+                    <source src="video-acara.mp4" type="video/mp4">
+                    Browser Anda tidak mendukung tag video.
+                </video>
+                
+                <!-- Label Live/Dokumentasi -->
+                <div class="absolute top-4 right-4 bg-brand-red text-white text-xs font-bold px-3 py-1 rounded flex items-center gap-2 animate-pulse">
+                    <div class="w-2 h-2 bg-white rounded-full"></div>
+                    DOKUMENTASI
+                </div>
+            </div>
+            
+            <p class="text-center mt-3 text-gray-400 text-xs sm:text-sm italic">
+                *Klik tombol play untuk memutar video ucapan/dokumentasi acara.
+            </p>
+        </div>
+
+        <div class="w-full max-w-3xl bg-black/70 backdrop-blur-md border border-brand-gold/40 rounded-2xl p-6 sm:p-8 z-20 mb-10 shadow-2xl relative text-center">
+            <i class="fa-solid fa-quote-left text-3xl text-brand-gold/50 absolute top-4 left-6"></i>
+            <h3 class="text-brand-gold font-display font-black text-xl md:text-2xl italic uppercase tracking-wider mb-4">
+                Keluarga Bugis Sidrap Kabupaten Poso
+            </h3>
+            <p class="text-gray-200 text-sm md:text-base leading-relaxed mb-6 px-4">
+                Segenap panitia mengucapkan terima kasih yang sebesar-besarnya kepada seluruh peserta dan keluarga besar yang telah berpartisipasi dan memeriahkan acara Jalan Sehat ini. Kebersamaan dan antusiasme Anda semua menjadi energi positif yang luar biasa. 
+            </p>
+            <div class="inline-block bg-brand-red/20 border-2 border-brand-red px-6 py-2 rounded-full">
+                <span class="text-white font-bold tracking-widest text-sm uppercase">Bersama Jalan Kaki, Pulang Bawa Rejeki</span>
+            </div>
+        </div>
+
+        <div class="w-full bg-white rounded-2xl p-4 sm:p-6 shadow-[0_10px_30px_rgba(0,0,0,0.5)] z-20 mb-16 flex flex-col md:flex-row justify-between items-center gap-4 md:gap-0 border border-gray-200">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 flex-shrink-0 bg-gray-100 rounded-full flex items-center justify-center text-brand-green"><i class="fa-solid fa-check-double text-2xl"></i></div>
+                <div class="text-left">
+                    <p class="text-brand-green font-extrabold text-xs tracking-wider uppercase mb-0.5">Status</p>
+                    <p class="text-black font-black text-base sm:text-lg uppercase">SUKSES DILAKSANAKAN</p>
+                </div>
+            </div>
+            <div class="hidden md:block h-10 w-px bg-gray-300 mx-4"></div>
+            <div class="flex items-center gap-4">
+                <div class="text-right">
+                    <p class="text-brand-green font-extrabold text-xs tracking-wider uppercase mb-0.5">Sampai Jumpa di</p>
+                    <p class="text-brand-red font-black text-base sm:text-lg uppercase">EVENT SELANJUTNYA</p>
+                </div>
+                <div class="w-12 h-12 flex-shrink-0 bg-gray-100 rounded-full flex items-center justify-center text-brand-red"><i class="fa-solid fa-handshake text-xl"></i></div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // --- LOGIKA MUSIK ---
+        const audio = document.getElementById('bg-music');
+        const icon = document.getElementById('music-icon');
+        let isPlaying = false;
+
+        function toggleMusic() {
+            if (isPlaying) {
+                audio.pause();
+                icon.className = "fa-solid fa-music text-xl";
+            } else {
+                audio.play().catch(e => console.log("Audio play failed:", e));
+                icon.className = "fa-solid fa-pause text-xl";
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // --- PAUSE MUSIK JIKA VIDEO DIPUTAR ---
+        const video = document.getElementById('event-video');
+        video.addEventListener('play', () => {
+            // Jika musik sedang menyala, matikan sementara saat video diputar
+            if (isPlaying) {
+                toggleMusic();
+            }
+        });
+
+        // --- EFEK CONFETTI PERAYAAN SAAT HALAMAN DIBUKA ---
+        window.onload = function() {
+            var duration = 3 * 1000;
+            var animationEnd = Date.now() + duration;
+            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+            function randomInRange(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+
+            var interval = setInterval(function() {
+                var timeLeft = animationEnd - Date.now();
+
+                if (timeLeft <= 0) {
+                    return clearInterval(interval);
+                }
+
+                var particleCount = 50 * (timeLeft / duration);
+                
+                // Confetti dari kiri dan kanan
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+            }, 250);
+        };
+    </script>
+</body>
+</html>
