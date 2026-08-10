@@ -1,4 +1,4 @@
-Created By Pian<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -105,7 +105,7 @@ Created By Pian<!DOCTYPE html>
 
     <!-- Elemen Audio Musik -->
     <audio id="bg-music" loop>
-        <source src="video-acara.mp3" type="audio/mpeg">
+        <source src="music.mp3" type="audio/mpeg">
     </audio>
 
     <!-- Tombol Kontrol Musik -->
@@ -140,16 +140,17 @@ Created By Pian<!DOCTYPE html>
         <div class="w-full max-w-3xl mb-8 relative z-20">
             <div class="video-wrapper">
                 <!-- 
-                   CATATAN UNTUK MEMASUKKAN VIDEO:
-                   1. Siapkan video Anda (misal namanya: "video-acara.mp4")
-                   2. Taruh file video tersebut di folder yang sama dengan index.html ini
-                   3. Ubah src="video-acara.mp4" pada tag di bawah ini
+                   CATATAN UNTUK MEMASUKKAN VIDEO DARI YOUTUBE:
+                   1. Paste link EMBED Youtube Anda pada bagian src="..." di bawah ini.
                 -->
-                <video id="event-video" controls poster="https://images.unsplash.com/photo-1526676537331-7bcaf84a51e9?q=80&w=1000&auto=format&fit=crop" class="w-full rounded-xl shadow-inner bg-black aspect-video object-cover">
-                    <!-- Ganti src di bawah ini dengan nama file video Anda -->
-                    <source src="video-acara.mp4" type="video/mp4">
-                    Browser Anda tidak mendukung tag video.
-                </video>
+                <div class="relative w-full overflow-hidden pt-[56.25%] rounded-xl shadow-inner bg-black">
+                    <iframe class="absolute top-0 left-0 w-full h-full" 
+                        src="https://youtu.be/fNDlyRv9FLQ" 
+                        title="Dokumentasi Acara Kebugis Poso" frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
                 
                 <!-- Label Live/Dokumentasi -->
                 <div class="absolute top-4 right-4 bg-brand-red text-white text-xs font-bold px-3 py-1 rounded flex items-center gap-2 animate-pulse">
@@ -211,15 +212,6 @@ Created By Pian<!DOCTYPE html>
             }
             isPlaying = !isPlaying;
         }
-
-        // --- PAUSE MUSIK JIKA VIDEO DIPUTAR ---
-        const video = document.getElementById('event-video');
-        video.addEventListener('play', () => {
-            // Jika musik sedang menyala, matikan sementara saat video diputar
-            if (isPlaying) {
-                toggleMusic();
-            }
-        });
 
         // --- EFEK CONFETTI PERAYAAN SAAT HALAMAN DIBUKA ---
         window.onload = function() {
