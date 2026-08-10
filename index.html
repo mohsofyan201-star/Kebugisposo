@@ -164,24 +164,17 @@
             </p>
         </div>
 
-         <!-- 👇 KODE BARU: GALERI FOTO (1 FOTO BESAR SEUKURAN VIDEO) 👇 -->
-            <div class="mt-6 pt-6 border-t border-white/10">
+         <!-- 👇 FOTO BESAR FULL-WIDTH SEUKURAN VIDEO 👇 -->
+            <div class="w-full mt-6 pt-6 border-t border-white/10">
                 <h3 class="text-md md:text-lg font-bold text-amber-300 mb-3 flex items-center justify-center gap-2">
                     📸 Dokumentasi Foto Acara
                 </h3>
-                
-                <!-- PENTING: Menggunakan div kontainer baru agar fotonya melebar penuh -->
-                <div class="relative w-full aspect-video rounded-xl overflow-hidden border-2 border-emerald-500/50 shadow-md hover:scale-[1.01] transition duration-300 bg-black">
-                    <!-- FOTO: Menggunakan kelas absolute agar memenuhi kontainer aspect-video -->
-                    <img src="Kbs.jpg" alt="Dokumentasi Acara Kebugis" class="absolute top-0 left-0 w-full h-full object-cover">
-                    
-                    <!-- Opsi: Tambahkan teks overlay kecil jika perlu -->
-                    <!-- <div class="absolute bottom-0 left-0 right-0 bg-black/60 p-2 text-center text-white text-xs">
-                        Momen Kebersamaan Peserta
-                    </div> -->
-                </div>
             </div>
-            <!-- 👆 BATAS AKHIR PERBAIKAN FOTO 👆 -->
+            
+            <div class="w-full aspect-video rounded-xl overflow-hidden border-2 border-emerald-500/50 shadow-2xl bg-black mb-6">
+                <img src="foto1.jpg" alt="Dokumentasi Acara Kebugis" class="w-full h-full object-cover">
+            </div>
+            <!-- 👆 BATAS AKHIR FOTO 👆 -->
 
         <div class="w-full max-w-3xl bg-black/70 backdrop-blur-md border border-brand-gold/40 rounded-2xl p-6 sm:p-8 z-20 mb-10 shadow-2xl relative text-center">
             <i class="fa-solid fa-quote-left text-3xl text-brand-gold/50 absolute top-4 left-6"></i>
