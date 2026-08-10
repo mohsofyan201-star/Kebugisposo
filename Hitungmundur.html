@@ -1,0 +1,325 @@
+created By Pian<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jalan Sehat Bersama KEBUGIS Poso 2026</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;0,800;0,900;1,700;1,800;1,900&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            red: '#d61c22',
+                            darkRed: '#8B0000',
+                            green: '#008751',
+                            neonGreen: '#00ff6a',
+                            gold: '#FFD700',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #050505;
+            color: white;
+            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .halftone {
+            position: fixed;
+            inset: 0;
+            background-image: radial-gradient(#FFD700 0.5px, transparent 0.5px);
+            background-size: 15px 15px;
+            opacity: 0.15;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .glow-bg {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at bottom center, rgba(0, 135, 81, 0.2) 0%, rgba(214, 28, 34, 0.1) 40%, transparent 80%);
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        .text-3d-white {
+            font-family: 'Montserrat', sans-serif;
+            font-style: italic;
+            font-weight: 900;
+            color: #FFFFFF;
+            text-shadow: 3px 3px 0 #000, 5px 5px 0 #000, 8px 8px 10px rgba(0,0,0,0.8);
+            letter-spacing: -0.02em;
+        }
+
+        .text-3d-red {
+            font-family: 'Montserrat', sans-serif;
+            font-style: italic;
+            font-weight: 900;
+            background: linear-gradient(180deg, #ff4d4d 0%, #aa0000 60%, #4d0000 100%);
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 2px 2px 0px white, 4px 6px 0px #000000;
+            line-height: 0.9;
+        }
+
+        .cd-card {
+            background: linear-gradient(180deg, #1a1a1a 0%, #050505 100%);
+            border: 2px solid rgba(0, 255, 106, 0.6);
+            border-top: 3px solid #00ff6a;
+            border-radius: 12px;
+            box-shadow: inset 0px 10px 20px -10px rgba(0, 255, 106, 0.3), 0px 8px 15px rgba(0,0,0,0.8);
+            position: relative;
+        }
+
+        .cd-label {
+            background: linear-gradient(to bottom, #d61c22, #8B0000);
+            border: 2px solid #000;
+            box-shadow: 0px 4px 6px rgba(0,0,0,0.5);
+        }
+
+        .ribbon-red {
+            background: linear-gradient(90deg, #8B0000 0%, #d61c22 50%, #8B0000 100%);
+            clip-path: polygon(2% 0, 98% 0, 100% 50%, 98% 100%, 2% 100%, 0% 50%);
+            border-top: 1px solid #FFD700;
+            border-bottom: 1px solid #FFD700;
+        }
+
+        .confetti {
+            position: absolute;
+            z-index: 0;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
+
+        .green-line {
+            height: 4px;
+            background-color: #00ff6a;
+            box-shadow: 0 0 8px #00ff6a;
+        }
+    </style>
+</head>
+
+<!-- Pemutar Musik YouTube (disembunyikan) -->
+<div id="youtube-player" style="display:none;"></div>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<script>
+let player;
+
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('youtube-player', {
+        height: '0',
+        width: '0',
+        videoId: 'NEAc-FtvfpE',
+        playerVars: {
+            autoplay: 1,
+            loop: 1,
+            playlist: 'NEAc-FtvfpE',
+            controls: 0
+        },
+        events: {
+            onReady: function (event) {
+                event.target.setVolume(50); // volume 50%
+                event.target.playVideo();
+            }
+        }
+    });
+}
+
+// Membantu autoplay di browser yang memblokir audio otomatis
+document.addEventListener('click', function () {
+    if (player && player.playVideo) {
+        player.playVideo();
+    }
+}, { once: true });
+</script>
+    
+<body class="relative min-h-screen flex flex-col items-center pb-20">
+
+    <!-- Latar Belakang Baru: Nuansa Taman/Hutan -->
+    <div class="fixed inset-0 z-[-3] bg-[url('IMG-20260628-WA0000.jpg')] bg-cover bg-center opacity-30" style="mask-image: linear-gradient(to bottom, black 20%, transparent 80%); -webkit-mask-image: linear-gradient(to bottom, black 20%, transparent 80%);"></div>
+    
+    <div class="glow-bg"></div>
+    <div class="halftone"></div>
+    <div id="confetti-container" class="fixed inset-0 overflow-hidden pointer-events-none z-0"></div>
+
+    <main class="w-full max-w-4xl mx-auto flex flex-col items-center px-4 relative z-10 pt-8 sm:pt-12">
+        
+        <div class="mb-4 transform hover:scale-105 transition duration-300">
+            <img src="IMG-20260627-WA0001.jpg" 
+                 alt="Logo Kebugis Poso" 
+                 class="w-32 h-32 md:w-40 md:h-40 object-contain rounded-full shadow-[0_0_20px_rgba(255,0,0,0.4)]"
+                 onerror="this.onerror=null; this.src='https://placehold.co/200x200/d61c22/white?text=LOGO';">
+        </div>
+
+        <h2 class="text-3d-white text-5xl sm:text-7xl md:text-[5.5rem] leading-none text-center -mb-2 z-20">
+            JALAN SEHAT
+        </h2>
+        
+        <div class="flex items-center justify-center w-full max-w-lg mb-2 z-10">
+            <div class="green-line flex-grow"></div>
+            <div class="bg-brand-green px-6 py-1 mx-3 transform -skew-x-12 border border-brand-neonGreen">
+                <span class="text-white font-black italic text-xl sm:text-2xl tracking-widest uppercase block transform skew-x-12">BERSAMA</span>
+            </div>
+            <div class="green-line flex-grow"></div>
+        </div>
+
+        <h1 class="text-3d-red text-[5rem] sm:text-[8rem] md:text-[9rem] tracking-tighter text-center z-20 w-full mb-4">
+            KEBUGIS
+        </h1>
+
+        <div class="bg-[#00331f] border-2 border-brand-green rounded-full px-6 py-2 shadow-[0_0_15px_rgba(0,135,81,0.5)] z-20 mb-6 max-w-[95%] text-center">
+            <p class="text-white text-xs sm:text-sm md:text-base font-bold tracking-[0.15em] uppercase font-display">
+                Keluarga Bugis Sidenreng Rappang Kabupaten Poso
+            </p>
+        </div>
+
+        <div class="w-full max-w-2xl ribbon-red py-3 px-8 text-center z-20 shadow-2xl mb-8 transform -rotate-1 hover:rotate-0 transition-transform duration-300">
+            <p class="text-white text-sm sm:text-lg md:text-xl font-black italic tracking-wide uppercase drop-shadow-md flex items-center justify-center gap-3">
+                <i class="fa-solid fa-person-walking text-brand-gold"></i>
+                Bersama Jalan Kaki Pulang Bawa Rejeki
+                <i class="fa-solid fa-person-walking text-brand-gold"></i>
+            </p>
+        </div>
+
+        <div class="inline-flex items-center gap-3 px-6 py-3 rounded-xl bg-black border-2 border-brand-gold shadow-[0_0_20px_rgba(255,215,0,0.2)] mb-10 z-20">
+            <i class="fa-regular fa-calendar-days text-brand-gold text-2xl"></i>
+            <span class="text-white font-display font-black text-lg md:text-2xl tracking-widest uppercase mt-1">Minggu, 9 Agustus 2026</span>
+        </div>
+
+        <div class="w-full max-w-3xl flex flex-col items-center mb-10 z-20">
+            <div class="flex items-center justify-center w-full mb-6">
+                <div class="h-[2px] bg-brand-red flex-grow"></div>
+                <h3 class="text-white font-display font-bold text-sm sm:text-base tracking-[0.3em] uppercase mx-4 text-center">
+                    Menuju Hari Acara
+                </h3>
+                <div class="h-[2px] bg-brand-red flex-grow"></div>
+            </div>
+
+            <div id="countdown-grid" class="grid grid-cols-4 gap-3 sm:gap-6 w-full px-2">
+                <div class="cd-card flex flex-col items-center justify-center pt-4 pb-6 sm:pt-6 sm:pb-8">
+                    <span id="days" class="text-4xl sm:text-6xl md:text-7xl font-black text-white font-display tracking-tighter">000</span>
+                    <div class="cd-label absolute -bottom-4 px-4 sm:px-8 py-1 rounded-full text-[10px] sm:text-sm font-bold text-white uppercase tracking-wider">Hari</div>
+                </div>
+                <div class="cd-card flex flex-col items-center justify-center pt-4 pb-6 sm:pt-6 sm:pb-8">
+                    <span id="hours" class="text-4xl sm:text-6xl md:text-7xl font-black text-white font-display tracking-tighter">00</span>
+                    <div class="cd-label absolute -bottom-4 px-4 sm:px-8 py-1 rounded-full text-[10px] sm:text-sm font-bold text-white uppercase tracking-wider">Jam</div>
+                </div>
+                <div class="cd-card flex flex-col items-center justify-center pt-4 pb-6 sm:pt-6 sm:pb-8">
+                    <span id="minutes" class="text-4xl sm:text-6xl md:text-7xl font-black text-white font-display tracking-tighter">00</span>
+                    <div class="cd-label absolute -bottom-4 px-4 sm:px-8 py-1 rounded-full text-[10px] sm:text-sm font-bold text-white uppercase tracking-wider">Menit</div>
+                </div>
+                <div class="cd-card flex flex-col items-center justify-center pt-4 pb-6 sm:pt-6 sm:pb-8">
+                    <span id="seconds" class="text-4xl sm:text-6xl md:text-7xl font-black text-white font-display tracking-tighter">00</span>
+                    <div class="cd-label absolute -bottom-4 px-4 sm:px-8 py-1 rounded-full text-[10px] sm:text-sm font-bold text-white uppercase tracking-wider">Detik</div>
+                </div>
+            </div>
+
+            <div id="event-started" class="hidden w-full text-center bg-brand-green/20 border-2 border-brand-neonGreen p-8 rounded-2xl mt-4 backdrop-blur-sm">
+                <h2 class="text-3xl font-display font-black text-brand-neonGreen italic mb-2">ACARA DIMULAI! 🎉</h2>
+            </div>
+        </div>
+
+        <div class="w-full max-w-3xl bg-black/60 backdrop-blur-md border border-brand-gold/50 rounded-2xl p-6 z-20 mb-10 shadow-2xl relative overflow-hidden">
+            <div class="relative z-10 flex flex-col items-center">
+ 
+
+
+            </div>
+        </div>
+
+        <div class="w-full bg-white rounded-2xl p-4 sm:p-6 shadow-[0_10px_30px_rgba(0,0,0,0.5)] z-20 mt-4 mb-16 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 md:gap-0 border border-gray-200">
+            <div class="flex items-center gap-4 flex-1 w-full md:pr-4 md:border-r border-gray-300">
+                <div class="w-12 h-12 flex-shrink-0 bg-gray-100 rounded-full flex items-center justify-center text-brand-red"><i class="fa-solid fa-location-dot text-2xl"></i></div>
+                <div>
+                    <p class="text-brand-green font-extrabold text-xs tracking-wider uppercase mb-0.5">Lokasi</p>
+                    <a href="https://www.google.com/maps/search/RTH+Kota+Poso" target="_blank" class="text-black font-black text-base sm:text-lg hover:text-brand-red underline decoration-brand-green underline-offset-4 transition-colors">RTH KOTA POSO</a>
+                </div>
+            </div>
+            <div class="flex items-center gap-4 flex-1 w-full md:px-6 md:border-r border-gray-300">
+                <div class="w-12 h-12 flex-shrink-0 bg-gray-100 rounded-full flex items-center justify-center text-brand-green"><i class="fa-solid fa-users text-xl"></i></div>
+                <div>
+                    <p class="text-brand-green font-extrabold text-xs tracking-wider uppercase mb-0.5">Bersama</p>
+                    <p class="text-black font-black text-sm sm:text-base leading-tight">KELUARGA BUGIS<br>SIDRAP KABUPATEN POSO</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4 flex-1 w-full md:pl-6">
+                <div class="w-12 h-12 flex-shrink-0 bg-gray-100 rounded-full flex items-center justify-center text-brand-red"><i class="fa-solid fa-heart-pulse text-xl"></i></div>
+                <div>
+                    <p class="text-brand-green font-extrabold text-xs tracking-wider uppercase mb-0.5">Sehat Bersama</p>
+                    <p class="text-brand-red font-black text-base leading-tight">KEBUGIS</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="w-full fixed bottom-0 left-0 right-0 z-30 pointer-events-none flex flex-col items-center">
+        <div class="bg-[#d61c22] border-y-2 border-brand-gold px-12 py-1.5 shadow-lg transform translate-y-3 pointer-events-auto">
+            <p class="text-white font-display font-black text-sm sm:text-lg italic tracking-[0.2em] uppercase">TERBUKA UNTUK UMUM</p>
+        </div>
+        <div class="w-full bg-black border-t-2 border-brand-gold flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 py-3 px-4 pointer-events-auto shadow-[0_-5px_20px_rgba(0,0,0,0.8)]">
+            <button onclick="alert('Fitur Kalender akan ditambahkan!')" class="text-white hover:text-brand-gold transition flex items-center gap-2 font-bold text-xs sm:text-sm">
+                <i class="fa-regular fa-calendar-plus"></i> SIMPAN KE KALENDER
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // --- LOGIKA HITUNG MUNDUR ---
+        const targetDate = new Date(2026, 7, 9, 6, 0, 0).getTime();
+        const els = { days: document.getElementById("days"), hours: document.getElementById("hours"), minutes: document.getElementById("minutes"), seconds: document.getElementById("seconds"), grid: document.getElementById("countdown-grid"), msg: document.getElementById("event-started") };
+        const pad = (n) => String(n).padStart(2, '0');
+        const updateTimer = () => {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
+            if (diff <= 0) { clearInterval(timerId); els.grid.classList.add("hidden"); els.msg.classList.remove("hidden"); return; }
+            els.days.textContent = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(3, '0');
+            els.hours.textContent = pad(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+            els.minutes.textContent = pad(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)));
+            els.seconds.textContent = pad(Math.floor((diff % (1000 * 60)) / 1000));
+        };
+        const timerId = setInterval(updateTimer, 1000);
+
+        // --- GENERATOR PANTUN AI ---
+        const generateBtn = document.getElementById('generate-pantun-btn');
+        generateBtn.addEventListener('click', async () => {
+            const pantunEl = document.getElementById('ai-pantun-text');
+            document.getElementById('ai-result-container').classList.remove('hidden');
+            pantunEl.innerHTML = 'AI sedang merangkai pantun...';
+            
+            try {
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ contents: [{ parts: [{ text: "Buatkan pantun penyemangat jalan sehat Kebugis Poso 9 Agustus 2026, semangat, kebersamaan, bugis, 4 baris." }] }] })
+                });
+                const result = await response.json();
+                pantunEl.innerHTML = result.candidates[0].content.parts[0].text.replace(/\n/g, '<br>');
+            } catch (err) {
+                pantunEl.innerHTML = "Maaf, AI sedang istirahat. Coba lagi!";
+            }
+        });
+    </script>
+</body>
+</html>
